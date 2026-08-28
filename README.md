@@ -25,3 +25,12 @@ curl -sfL https://get.mutte.me | sh -
 
 Client source, release archives, checksums, and security policy live in
 [`mutte-me/mutte-client`](https://github.com/mutte-me/mutte-client).
+
+## Formula updates
+
+The hourly `Update formula` workflow follows the reviewed `INSTALL_VERSION`
+channel in `mutte-client`. When that channel advances, it validates all four
+published archives and checksum companions, renders their GitHub SHA-256
+digests into the formula, and opens a protected pull request. The tap uses only
+its repository-scoped `GITHUB_TOKEN`; it has no credential that can write to
+the client repository.
