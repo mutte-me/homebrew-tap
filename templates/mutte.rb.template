@@ -1,0 +1,48 @@
+class Mutte < Formula
+  desc "Quiet, encrypted, terminal-first chat for Linux and macOS"
+  homepage "https://github.com/mutte-me/mutte-client"
+  version "%<version>s"
+  license "AGPL-3.0-only"
+
+  on_macos do
+    on_arm do
+      url "%<macos_aarch64_url>s"
+      sha256 "%<macos_aarch64_sha256>s"
+    end
+
+    on_intel do
+      url "%<macos_x86_64_url>s"
+      sha256 "%<macos_x86_64_sha256>s"
+    end
+  end
+
+  on_linux do
+    depends_on "dbus"
+
+    on_arm do
+      url "%<linux_aarch64_url>s"
+      sha256 "%<linux_aarch64_sha256>s"
+    end
+
+    on_intel do
+      url "%<linux_x86_64_url>s"
+      sha256 "%<linux_x86_64_sha256>s"
+    end
+  end
+
+  def install
+    if OS.mac?
+      bin.install "mutte"
+    else
+      libexec.install "mutte"
+      (bin/"mutte").write_env_script(
+        libexec/"mutte",
+        LD_LIBRARY_PATH: formula_opt_lib("dbus"),
+      )
+    end
+  end
+
+  test do
+    assert_match "mutte #{version}", shell_output("#{bin}/mutte --version")
+  end
+end

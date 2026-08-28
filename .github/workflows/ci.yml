@@ -24,6 +24,12 @@ jobs:
         uses: Homebrew/actions/setup-homebrew@1f8e202ffddf94def7f42f6fa3a482e821489f9c # 2026.07.10.1
       - name: Install Homebrew development dependencies
         run: brew install-bundler-gems
+      - name: Verify formula follows promoted client channel
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          ruby scripts/update-formula.rb
+          git diff --exit-code -- Formula/mutte.rb
       - name: Check style
         run: brew style Formula/mutte.rb
       - name: Audit formula
