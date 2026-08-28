@@ -31,15 +31,13 @@ class Mutte < Formula
   end
 
   def install
-    on_macos do
+    if OS.mac?
       bin.install "mutte"
-    end
-
-    on_linux do
+    else
       libexec.install "mutte"
       (bin/"mutte").write_env_script(
         libexec/"mutte",
-        LD_LIBRARY_PATH: Formula["dbus"].opt_lib,
+        LD_LIBRARY_PATH: formula_opt_lib("dbus"),
       )
     end
   end
