@@ -1,6 +1,6 @@
 class Mutte < Formula
   desc "Quiet, encrypted, terminal-first chat for Linux and macOS"
-  homepage "https://mutte.me"
+  homepage "https://github.com/mutte-me/mutte-client"
   version "0.1.0-alpha.4"
   license "AGPL-3.0-only"
 
