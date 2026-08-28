@@ -1,0 +1,56 @@
+name: Formula CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: formula-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    name: Formula audit
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - name: Set up Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@1f8e202ffddf94def7f42f6fa3a482e821489f9c # 2026.07.10.1
+      - name: Install Homebrew development dependencies
+        run: brew install-bundler-gems
+      - name: Check style
+        run: brew style Formula/mutte.rb
+      - name: Audit formula
+        run: brew audit --strict --online mutte-me/tap/mutte
+
+  install:
+    name: ${{ matrix.name }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Linux x86_64
+            runner: ubuntu-22.04
+          - name: Linux ARM64
+            runner: ubuntu-22.04-arm
+          - name: macOS Apple Silicon
+            runner: macos-15
+          - name: macOS Intel
+            runner: macos-15-intel
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 20
+    steps:
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@1f8e202ffddf94def7f42f6fa3a482e821489f9c # 2026.07.10.1
+      - name: Install Mutte
+        run: brew install --formula mutte-me/tap/mutte
+      - name: Test formula
+        run: brew test mutte-me/tap/mutte
+      - name: Check CLI
+        run: mutte --version
