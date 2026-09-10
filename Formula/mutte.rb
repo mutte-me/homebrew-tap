@@ -1,18 +1,18 @@
 class Mutte < Formula
   desc "Quiet, encrypted, terminal-first chat for Linux and macOS"
   homepage "https://github.com/mutte-me/mutte-client"
-  version "0.1.0-alpha.4"
+  version "0.1.0-alpha.5"
   license "AGPL-3.0-only"
 
   on_macos do
     on_arm do
-      url "https://github.com/mutte-me/mutte-client/releases/download/v0.1.0-alpha.4/mutte-0.1.0-alpha.4-macos-aarch64.tar.gz"
-      sha256 "5e67870793651eb1989cf99129766c2fbe30bfe224be548509ac2b3f2ddd3c7b"
+      url "https://github.com/mutte-me/mutte-client/releases/download/v0.1.0-alpha.5/mutte-0.1.0-alpha.5-macos-aarch64.tar.gz"
+      sha256 "f791693f6115795eb8578e722ec35d2e0dc6490a9ec9715a4d70ddcfe0df4a99"
     end
 
     on_intel do
-      url "https://github.com/mutte-me/mutte-client/releases/download/v0.1.0-alpha.4/mutte-0.1.0-alpha.4-macos-x86_64.tar.gz"
-      sha256 "ed3afd73eeb51134c4e5ce32e17dc620749ab458fe7021d0dce4e4c11c51f83f"
+      url "https://github.com/mutte-me/mutte-client/releases/download/v0.1.0-alpha.5/mutte-0.1.0-alpha.5-macos-x86_64.tar.gz"
+      sha256 "43ceffe138f8b1948bdfdccac3d8ae0d7a81ffd08a9191c86922571b6ab34d91"
     end
   end
 
@@ -20,13 +20,13 @@ class Mutte < Formula
     depends_on "dbus"
 
     on_arm do
-      url "https://github.com/mutte-me/mutte-client/releases/download/v0.1.0-alpha.4/mutte-0.1.0-alpha.4-linux-aarch64.tar.gz"
-      sha256 "b07d03b9e7f511e1fe22ec1e6b87b4c7fa80e859357e2c2bf66c34d8c6141763"
+      url "https://github.com/mutte-me/mutte-client/releases/download/v0.1.0-alpha.5/mutte-0.1.0-alpha.5-linux-aarch64.tar.gz"
+      sha256 "fe91885ef6fb9fb07c248218d1e5c85ccf4d67766947b8a5e57bfab9214ac67c"
     end
 
     on_intel do
-      url "https://github.com/mutte-me/mutte-client/releases/download/v0.1.0-alpha.4/mutte-0.1.0-alpha.4-linux-x86_64.tar.gz"
-      sha256 "b8a7dea2829f021272bbc746c393ede0a0726c28c1d7b64bec89a0ba812ada39"
+      url "https://github.com/mutte-me/mutte-client/releases/download/v0.1.0-alpha.5/mutte-0.1.0-alpha.5-linux-x86_64.tar.gz"
+      sha256 "8dfe8a6294daa30765ca9391734cbfb353fd28b58d740b57f0215d13a64b7c1d"
     end
   end
 
